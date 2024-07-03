@@ -18,7 +18,7 @@ For rollback -
 npm run migrate:rollback
 ```
 
-First, run the development server:
+Development server:
 
 ```bash
 npm run dev
