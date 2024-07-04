@@ -12,6 +12,9 @@ module.exports = {
     connection: process.env.DATABASE_URI,
     migrations: {
       directory: 'db/migrations',
+    },
+    seeds: {
+      directory: 'db/seeds/dev',
     }
   },
 };
