@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "migrate:latest": "node_modules/knex/bin/cli.js migrate:latest",
-    "migrate:rollback": "node_modules/knex/bin/cli.js migrate:rollback"
+    "migrate:rollback": "node_modules/knex/bin/cli.js migrate:rollback",
+    "seed": "node_modules/knex/bin/cli.js seed:run"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

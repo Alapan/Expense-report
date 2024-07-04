@@ -1,4 +1,5 @@
 import type { Knex } from 'knex';
+import { CategoryTypes } from '../utils';
 
 export async function up(knex: Knex): Promise<void> {
   knex.schema.hasTable('category').then((hasTable) => {
@@ -7,7 +8,8 @@ export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('category', (table) => {
       table.increments('id').primary();
       table.string('name').notNullable();
-      table.string('description')
+      table.string('description');
+      table.enum('type', [CategoryTypes.NEED, CategoryTypes.WANT]).notNullable();
     });
   });
 };
