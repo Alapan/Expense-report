@@ -18,6 +18,12 @@ For rollback -
 npm run migrate:rollback
 ```
 
+For seed data -
+
+```bash
+npm run seed
+```
+
 Development server:
 
 ```bash
