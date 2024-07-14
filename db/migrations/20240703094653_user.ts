@@ -1,17 +1,18 @@
 import type { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
-  knex.schema.hasTable('user').then((hasTable) => {
+  knex.schema.hasTable('useraccount').then((hasTable) => {
     if (hasTable) return;
 
-    return knex.schema.createTable('user', (table) => {
+    return knex.schema.createTable('useraccount', (table) => {
       table.increments('id').primary();
-      table.string('first_name');
-      table.string('last_name');
+      table.string('email').unique();
+      table.string('name');
+      table.string('picture');
     });
   });
 };
 
 export async function down(knex: Knex): Promise<void> {
-  return knex.schema.dropTableIfExists('user');
+  return knex.schema.dropTableIfExists('useraccount');
 };
