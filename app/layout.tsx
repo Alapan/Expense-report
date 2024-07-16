@@ -1,5 +1,6 @@
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import './globals.css';
+import { Metadata } from 'next';
 
 export default function RootProvider(
   { children, }: Readonly<{children: React.ReactNode}>
@@ -13,4 +14,8 @@ export default function RootProvider(
       </body>
     </html>
   );
+}
+
+export const metadata: Metadata = {
+  title: 'My Expense Reports'
 }
