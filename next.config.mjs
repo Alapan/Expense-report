@@ -4,6 +4,14 @@ const nextConfig = {
     serverComponentsExternalPackages: ['knex'],
     esmExternals: 'loose',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.gravatar.com'
+      }
+    ]
+  }
 };
 
 export default nextConfig;

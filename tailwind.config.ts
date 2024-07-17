@@ -25,7 +25,10 @@ const config: Config = {
       },
       animation: {
         'slide-from-left': 'slideFromLeft 1s'
-      }
+      },
+      colors: {
+        'custom-black': 'rgb(51 65 85)'
+      },
     },
     fontFamily: {
       light: ['Roboto-Light'],

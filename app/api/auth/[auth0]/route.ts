@@ -1,4 +1,4 @@
-import { Session, handleAuth, handleCallback } from '@auth0/nextjs-auth0';
+import { Session, handleAuth, handleCallback, handleLogout } from '@auth0/nextjs-auth0';
 import { NextRequest } from 'next/server';
 import knex from 'knex';
 import { handleLogin } from '@auth0/nextjs-auth0/edge';
@@ -33,5 +33,8 @@ export const GET = handleAuth({
       screen_hint: 'signup',
     },
     returnTo: '/tracker',
+  }),
+  logout: handleLogout({
+    returnTo: '/',
   }),
 });
