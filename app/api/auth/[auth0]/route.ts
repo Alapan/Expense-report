@@ -1,11 +1,8 @@
 import { Session, handleAuth, handleCallback, handleLogout } from '@auth0/nextjs-auth0';
 import { NextRequest } from 'next/server';
-import knex from 'knex';
 import { handleLogin } from '@auth0/nextjs-auth0/edge';
 
-const config = require('../../../../knexfile');
-
-const knexClient = knex(config.development);
+import knexClient from '../../../../db/knexClient';
 
 const afterCallback = async (req: NextRequest, session: Session, state: any) => {
   const { email, name, picture } = session.user;
