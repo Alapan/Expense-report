@@ -12,6 +12,7 @@ export async function up(knex: Knex): Promise<void> {
       table.integer('amount').unsigned().notNullable();
       table.string('place');
       table.enum('currency', currencies.map((currency) => currency.value)).notNullable();
+      table.timestamps(true, true);
       table.integer('user_id')
         .references('id')
         .inTable('useraccount')
