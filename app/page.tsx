@@ -25,14 +25,14 @@ export default function Home() {
           <LinkButton
             linkTo='/api/auth/login'
             buttonText='Login'
-            backgroundClass='bg-slate-700'
-            backgroundClassOnHover='hover:bg-slate-800'
+            backgroundColor='bg-slate-700'
+            backgroundColorOnHover='hover:bg-slate-800'
           />
           <LinkButton
             linkTo='/api/auth/signup'
             buttonText='Sign up'
-            backgroundClass='bg-slate-700'
-            backgroundClassOnHover='hover:bg-slate-800'
+            backgroundColor='bg-slate-700'
+            backgroundColorOnHover='hover:bg-slate-800'
           />
         </div>
       </div>
