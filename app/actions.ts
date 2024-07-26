@@ -23,7 +23,7 @@ export async function createExpense(prevState: { result: string }, formData: For
         mutation (
           $email: String!
           $date: Date!
-          $amount: Int!
+          $amount: Float!
           $currency: String!
           $category: String!
           $place: String
@@ -49,7 +49,7 @@ export async function createExpense(prevState: { result: string }, formData: For
     })
   })
   const responseObject = await responsePromise.json();
-  if (responseObject.data.createAndUpdateExpense > 0) {
+  if (responseObject.data?.createAndUpdateExpense > 0) {
     return {
       result: 'success',
     }
