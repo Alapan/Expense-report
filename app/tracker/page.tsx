@@ -10,8 +10,8 @@ const Page: NextPage = () => {
           <LinkButton
             linkTo='/tracker/expense'
             buttonText='Add Expense'
-            backgroundClass='bg-lime-700'
-            backgroundClassOnHover='hover:bg-lime-800'
+            backgroundColor='bg-lime-700'
+            backgroundColorOnHover='hover:bg-lime-800'
           />
         </div>
       </div>
