@@ -27,12 +27,14 @@ export default function Home() {
             buttonText='Login'
             backgroundColor='bg-slate-700'
             backgroundColorOnHover='hover:bg-slate-800'
+            otherCustomClasses='lg:w-2/5 mt-16'
           />
           <LinkButton
             linkTo='/api/auth/signup'
             buttonText='Sign up'
             backgroundColor='bg-slate-700'
             backgroundColorOnHover='hover:bg-slate-800'
+            otherCustomClasses='lg:w-2/5 mt-16'
           />
         </div>
       </div>
