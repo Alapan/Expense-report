@@ -21,10 +21,19 @@ const config: Config = {
           '100%': {
             transform: 'translateX(0)',
           }
-        }
+        },
+        fadeIn: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
       animation: {
-        'slide-from-left': 'slideFromLeft 1s'
+        'slide-from-left': 'slideFromLeft 1s',
+        'fade-in-image': 'fadeIn 2s',
       },
       colors: {
         'custom-black': 'rgb(51 65 85)'
