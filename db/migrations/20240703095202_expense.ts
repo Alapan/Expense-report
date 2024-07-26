@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('expense', (table) => {
       table.increments('id').primary();
       table.dateTime('date');
-      table.integer('amount').unsigned().notNullable();
+      table.float('amount').unsigned().notNullable();
       table.string('place');
       table.enum('currency', currencies.map((currency) => currency.value)).notNullable();
       table.timestamps(true, true);
