@@ -3,7 +3,7 @@ import { User } from '@/types';
 
 const UserProfileDropdown = ( { user }: { user: User }) => {
   return (
-    <div className='absolute w-64 h-64 right-12 shadow-2xl bg-slate-50'>
+    <div className='absolute w-64 h-64 right-12 shadow-2xl bg-slate-50 z-10'>
       <div className='flex flex-col justify-center items-center my-5'>
         <Image
           src={user.picture}
