@@ -12,7 +12,7 @@ const typeDefs = `#graphql
 
   input UserExpenseInput {
     place: String
-    amount: Int!
+    amount: Float!
     date: Date!
     currency: String!
     category: String!
@@ -21,7 +21,7 @@ const typeDefs = `#graphql
 
   type DbExpense {
     place: String
-    amount: Int!
+    amount: Float!
     date: Date!
     currency: String!
     created_at: Date!
