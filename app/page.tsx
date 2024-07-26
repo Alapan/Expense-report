@@ -22,8 +22,20 @@ export default function Home() {
           />
         </div>
         <div className='col-start-1 row-start-6 col-span-3 mx-auto my-4 w-6/12 lg:row-start-5 xl:row-start-4 animate-slide-from-left'>
-          <LinkButton linkTo='/api/auth/login' buttonText='Login' />
-          <LinkButton linkTo='/api/auth/signup' buttonText='Sign up' />
+          <LinkButton
+            linkTo='/api/auth/login'
+            buttonText='Login'
+            backgroundColor='bg-slate-700'
+            backgroundColorOnHover='hover:bg-slate-800'
+            otherCustomClasses='lg:w-2/5 mt-16'
+          />
+          <LinkButton
+            linkTo='/api/auth/signup'
+            buttonText='Sign up'
+            backgroundColor='bg-slate-700'
+            backgroundColorOnHover='hover:bg-slate-800'
+            otherCustomClasses='lg:w-2/5 mt-16'
+          />
         </div>
       </div>
     </main>
