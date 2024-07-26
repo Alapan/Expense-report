@@ -1,8 +1,8 @@
 'use client';
 
 import { NextPage } from 'next';
-import { useFormState } from 'react-dom';
 import Link from 'next/link';
+import { createRef, useState } from 'react';
 
 import InputField from '@/components/InputField';
 import { categories, currencies } from '../../../db/utils';
@@ -10,18 +10,28 @@ import Dropdown from '@/components/Dropdown';
 import DateInput from '@/components/DateInput';
 import { createExpense } from '@/actions';
 import Toast from '@/components/Toast';
+import useToast from '@/useToast';
 
 const Page: NextPage = () => {
-  const initialState = {
-    result: ''
-  };
 
-  const [ formState, formAction ] = useFormState(createExpense, initialState);
+  const ref = createRef<HTMLFormElement>();
+  const [ result, setResult ] = useState('');
+  const { isVisible, showToast } = useToast();
+
+  const handleSubmit = async (formData: FormData) => {
+    const response = await createExpense(formData);
+    setResult(response);
+    if (response === 'success' && ref.current) {
+      ref.current.reset();
+    }
+    showToast();
+  }
+
   return (
-    <>
+    <div className='xl:hidden'>
       <div className='text-4xl font-light mx-10 my-4'>{'Add Expense'}</div>
       <div className='m-10'>
-        <form action={formAction}>
+        <form action={handleSubmit} ref={ref}>
           <div className='flex flex-col'>
             <InputField
               placeholder='E.g. name of restaurant'
@@ -62,21 +72,25 @@ const Page: NextPage = () => {
               className='underline text-blue-600'
             >Back to Expenses page</Link>
           </div>
-          { formState.result === 'success' && (
+          { result === 'success' && (
             <Toast
               message='Expense successfully saved'
               backgroundColor='bg-green-400'
+              width='w-3/4'
+              isVisible={isVisible}
             />
           ) }
-          { formState.result === 'error' && (
+          { result === 'error' && (
             <Toast
               message='Error in saving! Please check your information and try again.'
               backgroundColor='bg-red-400'
+              width='w-3/4'
+              isVisible={isVisible}
             />
-          )}
+          ) }
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

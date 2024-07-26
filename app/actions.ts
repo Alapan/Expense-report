@@ -2,8 +2,7 @@
 
 import { getSession } from '@auth0/nextjs-auth0';
 
-
-export async function createExpense(prevState: { result: string }, formData: FormData) {
+export async function createExpense(formData: FormData) {
   const session = await getSession();
   const userEmail = session?.user.email;
   const {
@@ -12,7 +11,10 @@ export async function createExpense(prevState: { result: string }, formData: For
     place,
     category,
   } = Object.fromEntries(formData);
-  const amount = formData.get('amount') as string;
+
+  let amount = formData.get('amount') as string;
+  amount = amount.replace(',', '.');
+
   const responsePromise = await fetch(`${process.env.BASE_URL}/api/graphql`, {
     method: 'POST',
     headers: {
@@ -50,11 +52,7 @@ export async function createExpense(prevState: { result: string }, formData: For
   })
   const responseObject = await responsePromise.json();
   if (responseObject.data?.createAndUpdateExpense > 0) {
-    return {
-      result: 'success',
-    }
+    return 'success';
   }
-  return {
-    result: 'error',
-  };
+  return 'error';
 };
