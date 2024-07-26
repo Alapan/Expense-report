@@ -4,7 +4,8 @@ export default withMiddlewareAuthRequired();
 
 export const config = {
   matcher: [
-    '/tracker',
+    '/tracker/',
+    '/tracker/:path*',
     '/profile',
   ]
 }
