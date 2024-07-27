@@ -1,5 +1,3 @@
-'use client';
-
 interface ToastProps {
   message: string;
   backgroundColor: string;
