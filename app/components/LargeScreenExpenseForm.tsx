@@ -1,28 +1,19 @@
 'use client';
 
-import { createRef, useState } from 'react';
-
 import Dropdown from './Dropdown';
 import InputField from './InputField';
 import DateInput from './DateInput';
 import { categories, currencies } from '../../db/utils';
-import { createExpense } from '@/actions';
 import Toast from './Toast';
-import useToast from '@/useToast';
+import useExpenseFormResult from '@/hooks/useExpenseFormResult';
 
 const LargeScreenExpenseForm = () => {
-  const ref = createRef<HTMLFormElement>();
-  const [ result, setResult ] = useState('');
-  const { isVisible, showToast } = useToast();
-
-  const handleSubmit = async (formData: FormData) => {
-    const response = await createExpense(formData);
-    setResult(response);
-    if (response === 'success' && ref.current) {
-      ref.current.reset();
-    }
-    showToast();
-  }
+  const {
+    ref,
+    result,
+    isVisible,
+    handleSubmit,
+  } = useExpenseFormResult();
 
   return (
     <>
