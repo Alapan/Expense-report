@@ -2,30 +2,22 @@
 
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { createRef, useState } from 'react';
 
 import InputField from '@/components/InputField';
 import { categories, currencies } from '../../../db/utils';
 import Dropdown from '@/components/Dropdown';
 import DateInput from '@/components/DateInput';
-import { createExpense } from '@/actions';
 import Toast from '@/components/Toast';
-import useToast from '@/useToast';
+import useExpenseFormResult from '@/hooks/useExpenseFormResult';
 
 const Page: NextPage = () => {
 
-  const ref = createRef<HTMLFormElement>();
-  const [ result, setResult ] = useState('');
-  const { isVisible, showToast } = useToast();
-
-  const handleSubmit = async (formData: FormData) => {
-    const response = await createExpense(formData);
-    setResult(response);
-    if (response === 'success' && ref.current) {
-      ref.current.reset();
-    }
-    showToast();
-  }
+  const {
+    ref,
+    result,
+    isVisible,
+    handleSubmit,
+  } = useExpenseFormResult();
 
   return (
     <div className='xl:hidden'>
