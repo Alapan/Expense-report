@@ -1,6 +1,5 @@
 import type { Knex } from 'knex';
-
-import { currencies } from '../utils';
+import { currencies } from '@/types';
 
 export async function up(knex: Knex): Promise<void> {
   knex.schema.hasTable('expense').then((hasTable) => {
