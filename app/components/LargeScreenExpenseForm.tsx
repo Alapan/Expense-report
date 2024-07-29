@@ -3,9 +3,9 @@
 import Dropdown from './Dropdown';
 import InputField from './InputField';
 import DateInput from './DateInput';
-import { categories, currencies } from '../../db/utils';
 import Toast from './Toast';
 import useExpenseFormResult from '@/hooks/useExpenseFormResult';
+import { categories, currencies } from '@/types';
 
 const LargeScreenExpenseForm = () => {
   const {
@@ -18,7 +18,7 @@ const LargeScreenExpenseForm = () => {
   return (
     <>
       <form ref={ref} action={handleSubmit}>
-        <div className='fixed w-full grid grid-rows-1 grid-cols-6 gap-2 my-2 border-b border-slate-400'>
+        <div className='fixed w-full grid grid-rows-1 grid-cols-6 gap-2 pt-2 mb-2 border-b border-slate-400 bg-slate-50'>
           <div className='col-start-1 col-span-1 mx-4'>
             <InputField
               placeholder='E.g. name of restaurant'
@@ -65,7 +65,7 @@ const LargeScreenExpenseForm = () => {
           </div>
         </div>
       </form>
-      { result === 'success' && (
+      { result > 0 && (
         <Toast
           message='Expense successfully saved!'
           backgroundColor='bg-green-400'
@@ -73,7 +73,7 @@ const LargeScreenExpenseForm = () => {
           isVisible={isVisible}
         />
       )}
-      { result === 'error' && (
+      { result === 0 && (
         <Toast
           message='Error in saving! Please check your information and try again.'
           backgroundColor='bg-red-400'
