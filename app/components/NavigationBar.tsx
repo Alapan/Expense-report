@@ -19,7 +19,7 @@ const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
 
   return (
     <>
-      <div className='h-14 bg-custom-black'>
+      <div className='fixed w-full h-14 bg-custom-black top-0'>
         <div className='float-end ms-2 pr-8 pt-2 cursor-pointer' onClick={handleClick}>
           <Image
             src={user.picture}
