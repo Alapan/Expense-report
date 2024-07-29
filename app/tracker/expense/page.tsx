@@ -4,11 +4,11 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 
 import InputField from '@/components/InputField';
-import { categories, currencies } from '../../../db/utils';
 import Dropdown from '@/components/Dropdown';
 import DateInput from '@/components/DateInput';
 import Toast from '@/components/Toast';
 import useExpenseFormResult from '@/hooks/useExpenseFormResult';
+import { categories, currencies } from '@/types';
 
 const Page: NextPage = () => {
 
@@ -64,7 +64,7 @@ const Page: NextPage = () => {
               className='underline text-blue-600'
             >Back to Expenses page</Link>
           </div>
-          { result === 'success' && (
+          { result > 0 && (
             <Toast
               message='Expense successfully saved'
               backgroundColor='bg-green-400'
@@ -72,7 +72,7 @@ const Page: NextPage = () => {
               isVisible={isVisible}
             />
           ) }
-          { result === 'error' && (
+          { result === 0 && (
             <Toast
               message='Error in saving! Please check your information and try again.'
               backgroundColor='bg-red-400'
