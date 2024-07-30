@@ -2,7 +2,7 @@ import { ExpensesByMonth, UiExpense } from '@/types';
 
 export function sortExpensesByDate(expenses: ExpensesByMonth) {
   expenses.expenses.sort((a: UiExpense, b: UiExpense) => {
-    return b.date.getTime() - a.date.getTime();
+    return b.created_at.getTime() - a.created_at.getTime();
   });
   return expenses;
 }

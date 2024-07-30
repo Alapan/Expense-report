@@ -67,6 +67,7 @@ export async function getExpenses() {
         'place',
         'currency',
         'category_id',
+        'created_at',
       ]);
     const expensesWithCategoryName: UiExpense[] = await Promise.all(expenses.map(async (expense: DbExpense) => {
       const { category_id, ...rest } = expense;
