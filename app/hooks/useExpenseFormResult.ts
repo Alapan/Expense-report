@@ -1,28 +1,26 @@
 import { createRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useToast from './useToast';
-import { createExpense } from '../../db/serverActions';
+import { createExpense } from '@/db/serverActions';
 
 const useExpenseFormResult = () => {
   const ref = createRef<HTMLFormElement>();
-  const [ result, setResult ] = useState(0);
+  const [ createResult, setCreateResult ] = useState(0);
   const { isVisible, showToast } = useToast();
-  const router = useRouter();
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleCreate = async (formData: FormData) => {
     const response = await createExpense(formData);
-    setResult(response);
+    setCreateResult(response);
     if (response > 0 && ref.current) {
       ref.current.reset();
-      router.refresh();
     }
     showToast();
   }
 
   return {
     ref,
-    handleSubmit,
-    result,
+    handleCreate,
+    createResult,
     isVisible,
   }
 }
