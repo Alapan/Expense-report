@@ -10,14 +10,14 @@ import { categories, currencies } from '@/types';
 const LargeScreenExpenseForm = () => {
   const {
     ref,
-    result,
+    createResult,
     isVisible,
-    handleSubmit,
+    handleCreate,
   } = useExpenseFormResult();
 
   return (
     <>
-      <form ref={ref} action={handleSubmit}>
+      <form ref={ref} action={handleCreate}>
         <div className='fixed w-full grid grid-rows-1 grid-cols-6 gap-2 pt-2 mb-2 border-b border-slate-400 bg-slate-50'>
           <div className='col-start-1 col-span-1 mx-4'>
             <InputField
@@ -65,7 +65,7 @@ const LargeScreenExpenseForm = () => {
           </div>
         </div>
       </form>
-      { result > 0 && (
+      { createResult > 0 && (
         <Toast
           message='Expense successfully saved!'
           backgroundColor='bg-green-400'
@@ -73,7 +73,7 @@ const LargeScreenExpenseForm = () => {
           isVisible={isVisible}
         />
       )}
-      { result === 0 && (
+      { createResult === -1 && (
         <Toast
           message='Error in saving! Please check your information and try again.'
           backgroundColor='bg-red-400'

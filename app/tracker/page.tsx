@@ -1,11 +1,12 @@
 import { NextPage } from 'next';
 import LinkButton from '@/components/LinkButton';
 import LargeScreenExpenseForm from '@/components/LargeScreenExpenseForm';
-import ExpenseRow from '@/components/ExpenseRow';
-import { getExpenses } from '../../db/serverActions';
+import { getExpenses } from '@/db/serverActions';
+import ExpenseTable from '@/components/ExpenseTable';
 
 const Page: NextPage = async () => {
   const expensesByMonths = await getExpenses();
+
   return (
     <div>
       <div className='hidden xl:block xl:pt-14'>
@@ -24,24 +25,9 @@ const Page: NextPage = async () => {
         </div>
       </div>
       <div className='pt-12 xl:pt-28'>
-        {expensesByMonths.map(({ month, year, expenses, total }, i) => (
-          <div key={`${month} ${year}`} className='mx-5 my-10'>
-            <div className='font-light text-3xl mb-10 font-medium'>{month} {year}</div>
-            <div className='grid grid-rows-1 grid-cols-3 xl:grid-cols-4 pb-10'>
-              <div className='col-start-1 col-span-1 text-3xl font-medium'>
-                {'Total'}
-              </div>
-              <div className='col-start-3 col-span-1 text-3xl xl:col-start-4 font-medium mx-auto'>
-                {`${total}${expenses[0].currency}`}
-              </div>
-            </div>
-            {expenses.map((expense) => (
-              <div key={expense.id} className='mb-10'>
-                <ExpenseRow expense={expense}/>
-              </div>
-            ))}
-          </div>
-        ))}
+        <ExpenseTable
+          expensesByMonths={expensesByMonths}
+        />
       </div>
     </div>
   );

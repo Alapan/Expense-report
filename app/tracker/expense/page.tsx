@@ -11,19 +11,18 @@ import useExpenseFormResult from '@/hooks/useExpenseFormResult';
 import { categories, currencies } from '@/types';
 
 const Page: NextPage = () => {
-
   const {
     ref,
-    result,
+    createResult,
     isVisible,
-    handleSubmit,
+    handleCreate,
   } = useExpenseFormResult();
 
   return (
     <div className='xl:hidden'>
       <div className='text-4xl font-light mx-10 my-4'>{'Add Expense'}</div>
       <div className='m-10'>
-        <form action={handleSubmit} ref={ref}>
+        <form action={handleCreate} ref={ref}>
           <div className='flex flex-col'>
             <InputField
               placeholder='E.g. name of restaurant'
@@ -64,7 +63,7 @@ const Page: NextPage = () => {
               className='underline text-blue-600'
             >Back to Expenses page</Link>
           </div>
-          { result > 0 && (
+          { createResult > 0 && (
             <Toast
               message='Expense successfully saved'
               backgroundColor='bg-green-400'
@@ -72,7 +71,7 @@ const Page: NextPage = () => {
               isVisible={isVisible}
             />
           ) }
-          { result === 0 && (
+          { createResult === -1 && (
             <Toast
               message='Error in saving! Please check your information and try again.'
               backgroundColor='bg-red-400'

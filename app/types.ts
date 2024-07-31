@@ -39,6 +39,7 @@ export interface UiExpense extends Omit<DbExpense, 'category_id'> {
 export interface ExpensesByMonth {
   month: string;
   year: string;
+  total?: number;
   expenses: UiExpense[];
 }
 

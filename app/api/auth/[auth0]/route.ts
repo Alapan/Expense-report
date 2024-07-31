@@ -2,7 +2,7 @@ import { Session, handleAuth, handleCallback, handleLogout } from '@auth0/nextjs
 import { NextRequest } from 'next/server';
 import { handleLogin } from '@auth0/nextjs-auth0/edge';
 
-import knexClient from '../../../../db/knexClient';
+import knexClient from '@/db/knexClient';
 
 const afterCallback = async (req: NextRequest, session: Session, state: any) => {
   const { email, name, picture } = session.user;
