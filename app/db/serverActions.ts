@@ -14,8 +14,9 @@ export async function createExpense(formData: FormData) {
     place,
     category,
   } = Object.fromEntries(formData);
-  const date = new Date(dateOfExpense as string).toISOString()
-
+  const date = new Date(dateOfExpense as string)
+  // Handle offset of 1 day
+  const dateWithOffset = new Date(date.getTime() + Math.abs(date.getTimezoneOffset()*60000)).toISOString()
   let amount = formData.get('amount') as string;
   amount = amount.replace(',', '.');
 
@@ -27,7 +28,7 @@ export async function createExpense(formData: FormData) {
         .insert({
           amount,
           currency,
-          date,
+          date: dateWithOffset,
           place,
           user_id: dbUser.id,
           category_id: dbCategory.id
@@ -44,7 +45,7 @@ export async function createExpense(formData: FormData) {
         ]);
       return expense.id;
     }
-    return 0;
+    return -1;
   } catch (err) {
     throw err;
   }
@@ -83,6 +84,31 @@ export async function getExpenses() {
       return { ...expenses, total }
     });
     return expensesEachMonthWithTotal;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function deleteExpense(expenseId: number) {
+  try {
+    const session = await getSession();
+    const currentUser = session?.user?.email;
+    const expense = await knexClient('expense')
+      .where('id', expenseId)
+      .first();
+    const user = await knexClient('useraccount')
+      .where('id', expense.user_id)
+      .select('email')
+      .first();
+    if (user.email === currentUser) {
+      const [ row ] = await knexClient('expense')
+        .where('id', expenseId)
+        .del()
+        .returning('id');
+
+      return row.id;
+    }
+    return -1;
   } catch (err) {
     throw err;
   }
