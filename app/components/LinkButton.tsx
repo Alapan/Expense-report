@@ -14,10 +14,13 @@ const LinkButton = ({
   backgroundColor,
   backgroundColorOnHover,
   otherCustomClasses = '',
-}: ButtonProps) => {
-  return (
-    <Link href={linkTo} className={`inline-block w-full ${otherCustomClasses} lg:ms-6 text-center text-white ${backgroundColor} ${backgroundColorOnHover} hover:underline rounded-lg p-3.5`}>{buttonText}</Link>
-  );
-}
+}: ButtonProps) => (
+    <Link
+      href={linkTo}
+      className={`inline-block w-full ${otherCustomClasses} lg:ms-6 text-center text-white ${backgroundColor} ${backgroundColorOnHover} hover:underline rounded-lg p-3.5 font-light`}
+    >
+      {buttonText}
+    </Link>
+)
 
 export default LinkButton;
