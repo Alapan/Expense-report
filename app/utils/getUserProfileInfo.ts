@@ -1,11 +1,11 @@
 import { Claims, getSession } from '@auth0/nextjs-auth0';
 import 'server-only';
 
-export const getUserProfileInfo = async (): Promise<Claims> => {
+export const getUserProfileInfo = async (): Promise<Claims | null > => {
   const session = await getSession();
 
   if (!session) {
-    throw new Error('Authentication needed!');
+    return null;
   }
 
   const { user } = session;
