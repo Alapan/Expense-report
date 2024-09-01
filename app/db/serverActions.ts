@@ -83,7 +83,27 @@ export async function getExpenses() {
       const total = getTotalExpenses(sortExpensesByDate(expenses));
       return { ...expenses, total }
     });
-    return expensesEachMonthWithTotal;
+
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const sortedExpensesByMonth = expensesEachMonthWithTotal.sort((exp1, exp2) => {
+      const date2 = new Date(parseInt(exp2.year), months.indexOf(exp2.month), 1);
+      const date1 = new Date(parseInt(exp1.year), months.indexOf(exp1.month), 1);
+      return date2.getTime() - date1.getTime();
+    });
+    return sortedExpensesByMonth;
   } catch (err) {
     throw err;
   }
