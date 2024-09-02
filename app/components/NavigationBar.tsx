@@ -12,8 +12,13 @@ interface NavigationBarProps {
 }
 
 const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
-  const { showDropdown, containerRef, handleClick } =
-    useOnClickOutsideDropdown();
+
+  const {
+    showDropdown,
+    handleClick,
+    containerRef,
+  } = useOnClickOutsideDropdown();
+
   return (
     <nav ref={containerRef}>
       <div className="fixed w-full h-14 bg-custom-black top-0">
