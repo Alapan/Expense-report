@@ -14,8 +14,8 @@ interface NavigationBarProps {
 const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
   const {
     showDropdown,
-    containerRef,
     handleClick,
+    containerRef,
   } = useOnClickOutsideDropdown();
   return (
     <div ref={containerRef}>

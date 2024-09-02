@@ -3,6 +3,7 @@ import LinkButton from '@/components/LinkButton';
 import LargeScreenExpenseForm from '@/components/LargeScreenExpenseForm';
 import { getExpenses } from '@/db/serverActions';
 import ExpenseTable from '@/components/ExpenseTable';
+import DateFilter from '@/components/DateFilter';
 
 const Page: NextPage = async () => {
   const expensesByMonths = await getExpenses();
@@ -11,6 +12,9 @@ const Page: NextPage = async () => {
     <div>
       <div className='hidden xl:block xl:pt-14'>
         <LargeScreenExpenseForm />
+      </div>
+      <div className='mx-5 mt-20'>
+        <DateFilter expensesByMonths={expensesByMonths}/>
       </div>
       <div className='fixed bottom-0 w-full border-slate-200 border-solid bg-slate-50 xl:hidden'>
         <div className='grid grid-cols-3 grid-rows-1 md:grid-cols-5'>

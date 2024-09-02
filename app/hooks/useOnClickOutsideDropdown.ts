@@ -1,13 +1,13 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 const useOnClickOutsideDropdown = () => {
-  const [ showDropdown, setShowDropdown ] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [ showDropdown, setShowDropdown ] = useState(false);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (): void => {
-    setShowDropdown(!showDropdown);
+    setShowDropdown(true);
   };
-  
+
   useEffect(() => {
     const onClickOutside = (event: any) => {
       // If click event originated outside dropdown container element,
