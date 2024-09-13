@@ -6,17 +6,17 @@ export default function Home() {
     <main>
       <div className='h-screen grid grid-cols-3 grid-rows-7 lg:grid-cols-5'>
         <div className='col-start-1 row-start-2 col-span-3 row-span-2 lg:row-start-3 animate-slide-from-left'>
-          <div className='text-4xl lg:text-7xl font-light text-center my-4'>
+          <div role='heading' aria-level={2} className='text-5xl lg:text-7xl font-light text-center my-4'>
             {'Track your '}<span className='font-medium'>Expenses</span>
           </div>
-          <div className='text-sm md:text-lg mx-auto my-3 text-center'>
+          <div role='heading' aria-level={4} className='text-md md:text-lg mx-auto my-3 text-center font-light'>
             {'Enter and view your expenses in this easy-to-use website!'}
           </div>
         </div>
         <div className='col-start-1 row-start-3 col-span-3 row-span-3 ms-5 me-5 md:mt-6 md:row-start-3 lg:row-start-3 lg:col-span-2 lg:row-span-3 relative animate-slide-from-left'>
           <Image
             src={'/living-expenses.jpg'}
-            alt='Landing page image for living expenses'
+            alt='Landing page image for living expenses showing pen on paper bill'
             fill
             style={{ objectFit:'cover' }}
           />
@@ -31,7 +31,7 @@ export default function Home() {
           />
           <LinkButton
             linkTo='/api/auth/signup'
-            buttonText='Sign up'
+            buttonText='Sign Up'
             backgroundColor='bg-slate-700'
             backgroundColorOnHover='hover:bg-slate-800'
             otherCustomClasses='lg:w-2/5 mt-6'
