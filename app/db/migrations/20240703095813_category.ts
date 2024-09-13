@@ -1,5 +1,5 @@
 import type { Knex } from 'knex';
-import { CategoryType } from '@/types';
+import { CategoryType } from '../../types';
 
 export async function up(knex: Knex): Promise<void> {
   knex.schema.hasTable('category').then((hasTable) => {
