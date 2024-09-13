@@ -11,7 +11,9 @@
     "migrate:rollback": "node_modules/knex/bin/cli.js migrate:rollback",
     "migrate:down": "node_modules/knex/bin/cli.js migrate:down",
     "migrate:up": "node_modules/knex/bin/cli.js migrate:up",
-    "seed": "node_modules/knex/bin/cli.js seed:run"
+    "seed": "node_modules/knex/bin/cli.js seed:run",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
@@ -25,13 +27,20 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest": "^29.5.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
