@@ -1,7 +1,10 @@
 name: Run tests using Jest and React Testing Library
 
 on:
-  [push]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   unit-tests:
