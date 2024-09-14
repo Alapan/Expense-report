@@ -12,7 +12,6 @@ interface ExpenseRowProps {
 }
 
 const ExpenseRow = ({ expense, handleDelete }: ExpenseRowProps ) => {
-
   const [ isModalVisible, setIsModalVisible ] = useState(false);
 
   return (
@@ -30,7 +29,7 @@ const ExpenseRow = ({ expense, handleDelete }: ExpenseRowProps ) => {
         <div className='col-start-3 md:col-start-4 xl:col-start-5 2xl:col-start-6 col-span-1 row-start-1 row-span-1 text-xl font-light'>
           <div className='grid grid-rows-1 grid-cols-2'>
             <div className='row-start-1 row-span-1 col-start-1 col-span-1 my-4 md:text-right'>
-              {`${expense.amount} ${expense.currency}`}
+              {`${expense.amount} ${expense.currency} `}
             </div>
             <div className='row-start-1 row-span-1 col-start-2 col-span-1 mx-auto my-4'>
               <button onClick={() => setIsModalVisible(true)}>
