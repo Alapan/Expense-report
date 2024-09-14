@@ -6,7 +6,6 @@ import ExpenseTable from '@/components/ExpenseTable';
 
 const Page: NextPage = async () => {
   const expensesByMonths = await getExpenses();
-
   return (
     <div>
       <div className='hidden xl:block xl:pt-14'>

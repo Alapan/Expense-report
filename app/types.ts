@@ -33,7 +33,7 @@ export interface DbExpense {
   category_id: number;
 }
 
-export interface UiExpense extends Omit<DbExpense, 'category_id'> {
+export interface UiExpense extends Omit<DbExpense, 'category_id' | 'user_id' | 'updated_at'> {
   categoryName: string;
 }
 

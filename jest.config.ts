@@ -39,8 +39,13 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
+    '^jose': require.resolve("jose"),
+    "^@panva/hkdf": require.resolve("@panva/hkdf"),
     '^@/components/(.*)$': '<rootDir>/components/$1',
   },
+
+  // A list of paths to modules that run some code to configure or set up the testing framework before each test
+  setupFilesAfterEnv: ['<rootDir>/setup.jest.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   slowTestThreshold: 5,
