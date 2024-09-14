@@ -31,4 +31,10 @@ npm run dev
 ```
 Then go to http://localhost:3000/
 
+Tests:
+
+```bash
+npm run test
+```
+
 
