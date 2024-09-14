@@ -6,7 +6,7 @@ import { ExpensesByMonth } from '@/types';
 
 jest.mock('../app/components/ExpenseRow', () => jest.fn(() => null));
 
-describe('Expense table component', () => {
+describe('ExpenseTable component', () => {
   const expensesByMonths: ExpensesByMonth[] = [
     {
       month: 'September',
@@ -83,5 +83,12 @@ describe('Expense table component', () => {
   it('Renders the word "Total" twice', () => {
     const totalHeading = screen.getAllByText('Total');
     expect(totalHeading).toHaveLength(2);
+  });
+
+  it('Renders the total expense for the month in the right format', () => {
+    const septemberTotal = screen.getByText('144.64 €');
+    const augustTotal = screen.getByText('54.24 €');
+    expect(septemberTotal).toBeInTheDocument();
+    expect(augustTotal).toBeInTheDocument();
   });
 });

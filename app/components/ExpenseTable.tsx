@@ -36,9 +36,9 @@ const ExpenseTable = ({ expensesByMonths }: ExpenseTableProps) => {
             <h2 className='col-start-1 col-span-1 text-3xl font-medium'>
               {'Total'}
             </h2>
-            <div className='col-start-3 col-span-1 text-3xl md:col-start-4 xl:col-start-5 2xl:col-start-6 font-medium mx-auto'>
-              {`${total}${expenses[0].currency}`}
-            </div>
+            <h2 className='col-start-3 col-span-1 text-3xl md:col-start-4 xl:col-start-5 2xl:col-start-6 font-medium mx-auto'>
+              {`${total} ${expenses[0].currency}`}
+            </h2>
           </section>
           {expenses.map((expense) => (
             <div key={expense.id} className='mb-10'>

@@ -18,7 +18,7 @@ const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
     handleClick,
   } = useOnClickOutsideDropdown();
   return (
-    <div ref={containerRef}>
+    <nav ref={containerRef}>
       <div className='fixed w-full h-14 bg-custom-black top-0'>
         <div className='float-end ms-2 pr-8 pt-2 cursor-pointer' onClick={handleClick}>
           <Image
@@ -31,7 +31,7 @@ const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
         </div>
       </div>
       { showDropdown && UserProfileDropdown }
-    </div>
+    </nav>
   );
 }
 
