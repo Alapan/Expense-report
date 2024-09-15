@@ -19,7 +19,9 @@ describe('Page', () => {
   });
 
   it('renders the landing page image', () => {
-    const image = screen.getByAltText('Landing page image for living expenses showing pen on paper bill');
+    const image = screen.getByAltText(
+      'Landing page image for living expenses showing pen on paper bill'
+    );
     expect(image).toBeInTheDocument();
   });
 

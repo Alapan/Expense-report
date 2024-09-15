@@ -15,12 +15,12 @@ const LinkButton = ({
   backgroundColorOnHover,
   otherCustomClasses = '',
 }: ButtonProps) => (
-    <Link
-      href={linkTo}
-      className={`inline-block w-full ${otherCustomClasses} lg:ms-6 text-center text-white ${backgroundColor} ${backgroundColorOnHover} hover:underline rounded-lg p-3.5 font-light`}
-    >
-      {buttonText}
-    </Link>
-)
+  <Link
+    href={linkTo}
+    className={`inline-block w-full ${otherCustomClasses} lg:ms-6 text-center text-white ${backgroundColor} ${backgroundColorOnHover} hover:underline rounded-lg p-3.5 font-light`}
+  >
+    {buttonText}
+  </Link>
+);
 
 export default LinkButton;

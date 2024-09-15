@@ -4,7 +4,7 @@ import { createExpense } from '@/db/serverActions';
 
 const useExpenseFormResult = () => {
   const ref = createRef<HTMLFormElement>();
-  const [ createResult, setCreateResult ] = useState(0);
+  const [createResult, setCreateResult] = useState(0);
   const { isVisible, showToast } = useToast();
 
   const handleCreate = async (formData: FormData) => {
@@ -14,14 +14,14 @@ const useExpenseFormResult = () => {
       ref.current.reset();
     }
     showToast();
-  }
+  };
 
   return {
     ref,
     handleCreate,
     createResult,
     isVisible,
-  }
-}
+  };
+};
 
 export default useExpenseFormResult;

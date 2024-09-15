@@ -20,7 +20,7 @@ const config: Config = {
           },
           '100%': {
             transform: 'translateX(0)',
-          }
+          },
         },
         fadeIn: {
           '0%': {
@@ -36,7 +36,7 @@ const config: Config = {
         'fade-in-image': 'fadeIn 2s',
       },
       colors: {
-        'custom-black': 'rgb(51 65 85)'
+        'custom-black': 'rgb(51 65 85)',
       },
     },
     fontFamily: {

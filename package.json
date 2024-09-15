@@ -13,7 +13,8 @@
     "migrate:up": "node_modules/knex/bin/cli.js migrate:up",
     "seed": "node_modules/knex/bin/cli.js seed:run",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
@@ -40,6 +41,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^25.0.0",
     "postcss": "^8",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5",

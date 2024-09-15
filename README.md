@@ -29,6 +29,7 @@ Development server:
 ```bash
 npm run dev
 ```
+
 Then go to http://localhost:3000/
 
 Tests:
@@ -36,5 +37,3 @@ Tests:
 ```bash
 npm run test
 ```
-
-

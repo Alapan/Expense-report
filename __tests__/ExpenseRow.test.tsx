@@ -13,11 +13,13 @@ describe('ExpenseRow component', () => {
     place: 'Casino',
     currency: '€',
     created_at: new Date('2024-09-14T08:33:01.438Z'),
-    categoryName: 'Culture and entertainment'
+    categoryName: 'Culture and entertainment',
   };
 
   beforeEach(() => {
-    render(<ExpenseRow expense={expense} handleDelete={() => Promise.resolve()}/>);
+    render(
+      <ExpenseRow expense={expense} handleDelete={() => Promise.resolve()} />
+    );
   });
 
   it('Renders expense date in the right format', () => {
