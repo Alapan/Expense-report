@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useToast = () => {
-  const [ isVisible, setIsVisible ] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const showToast = () => {
     setIsVisible(true);

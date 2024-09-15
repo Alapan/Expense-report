@@ -12,27 +12,27 @@ interface NavigationBarProps {
 }
 
 const NavigationBar = ({ user, UserProfileDropdown }: NavigationBarProps) => {
-  const {
-    showDropdown,
-    containerRef,
-    handleClick,
-  } = useOnClickOutsideDropdown();
+  const { showDropdown, containerRef, handleClick } =
+    useOnClickOutsideDropdown();
   return (
     <nav ref={containerRef}>
-      <div className='fixed w-full h-14 bg-custom-black top-0'>
-        <div className='float-end ms-2 pr-8 pt-2 cursor-pointer' onClick={handleClick}>
+      <div className="fixed w-full h-14 bg-custom-black top-0">
+        <div
+          className="float-end ms-2 pr-8 pt-2 cursor-pointer"
+          onClick={handleClick}
+        >
           <Image
             src={user.picture}
-            alt='User profile photo'
+            alt="User profile photo"
             width={40}
             height={40}
-            className='rounded-full'
+            className="rounded-full"
           />
         </div>
       </div>
-      { showDropdown && UserProfileDropdown }
+      {showDropdown && UserProfileDropdown}
     </nav>
   );
-}
+};
 
 export default NavigationBar;

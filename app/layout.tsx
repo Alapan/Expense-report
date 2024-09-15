@@ -7,26 +7,22 @@ import UserProfileDropdown from './components/UserProfileDropdown';
 import { getUserProfileInfo } from './utils/getUserProfileInfo';
 import './globals.css';
 
-export default async function RootProvider(
-  {
-    children,
-  }: Readonly<{
-    children: ReactNode,
-  }>
-) {
-  const user = await getUserProfileInfo() as User;
+export default async function RootProvider({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
+  const user = (await getUserProfileInfo()) as User;
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         <UserProvider>
-          {
-            user ? (
-              <NavigationBar
-                user={user}
-                UserProfileDropdown={<UserProfileDropdown user={user}/>}
-              />
-            ): null
-          }
+          {user ? (
+            <NavigationBar
+              user={user}
+              UserProfileDropdown={<UserProfileDropdown user={user} />}
+            />
+          ) : null}
           {children}
         </UserProvider>
       </body>
@@ -35,5 +31,5 @@ export default async function RootProvider(
 }
 
 export const metadata: Metadata = {
-  title: 'My Expense Reports'
-}
+  title: 'My Expense Reports',
+};

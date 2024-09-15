@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 
-dotenv.config({ path: '.env.local'});
+dotenv.config({ path: '.env.local' });
 dotenv.config();
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -15,6 +15,6 @@ module.exports = {
     },
     seeds: {
       directory: 'app/db/seeds/dev',
-    }
+    },
   },
 };

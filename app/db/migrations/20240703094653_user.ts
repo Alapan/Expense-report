@@ -11,8 +11,8 @@ export async function up(knex: Knex): Promise<void> {
       table.string('picture');
     });
   });
-};
+}
 
 export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTableIfExists('useraccount');
-};
+}

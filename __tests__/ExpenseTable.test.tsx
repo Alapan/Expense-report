@@ -38,9 +38,9 @@ describe('ExpenseTable component', () => {
           currency: '€',
           created_at: new Date('2024-09-13T17:22:19.752Z'),
           categoryName: 'Food and groceries',
-        }
+        },
       ],
-      total: 144.64
+      total: 144.64,
     },
     {
       month: 'August',
@@ -53,7 +53,7 @@ describe('ExpenseTable component', () => {
           place: 'Movie',
           currency: '€',
           created_at: new Date('2024-09-14T08:33:46.279Z'),
-          categoryName: 'Culture and entertainment'
+          categoryName: 'Culture and entertainment',
         },
         {
           id: 7,
@@ -62,20 +62,26 @@ describe('ExpenseTable component', () => {
           place: 'Casino',
           currency: '€',
           created_at: new Date('2024-09-14T08:33:01.438Z'),
-          categoryName: 'Culture and entertainment'
-        }
+          categoryName: 'Culture and entertainment',
+        },
       ],
-      total: 54.24
-    }
+      total: 54.24,
+    },
   ];
 
   beforeEach(() => {
-    render(<ExpenseTable expensesByMonths={expensesByMonths}/>);
+    render(<ExpenseTable expensesByMonths={expensesByMonths} />);
   });
 
   it('Renders the month names', () => {
-    const septemberHeading = screen.getByRole('heading', { level: 2, name: 'September 2024' });
-    const augustHeading = screen.getByRole('heading', { level: 2, name: 'August 2024' });
+    const septemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'September 2024',
+    });
+    const augustHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'August 2024',
+    });
     expect(septemberHeading).toBeInTheDocument();
     expect(augustHeading).toBeInTheDocument();
   });

@@ -8,7 +8,7 @@ export interface User {
 export enum CategoryType {
   NEED = 'need',
   WANT = 'want',
-};
+}
 
 export interface Currency {
   name: string;
@@ -33,7 +33,8 @@ export interface DbExpense {
   category_id: number;
 }
 
-export interface UiExpense extends Omit<DbExpense, 'category_id' | 'user_id' | 'updated_at'> {
+export interface UiExpense
+  extends Omit<DbExpense, 'category_id' | 'user_id' | 'updated_at'> {
   categoryName: string;
 }
 
@@ -51,7 +52,7 @@ export const currencies: Currency[] = [
   },
   {
     name: 'Indian Rupee',
-    value: '₹'
+    value: '₹',
   },
   {
     name: 'US Dollar',

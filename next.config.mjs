@@ -8,10 +8,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's.gravatar.com'
-      }
-    ]
-  }
+        hostname: 's.gravatar.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -10,14 +10,14 @@ export function sortExpensesByDate(expenses: ExpensesByMonth) {
 export function getTotalExpenses(expensesEachMonth: ExpensesByMonth) {
   let total = 0;
   expensesEachMonth.expenses.forEach((expense) => {
-    total += expense.amount
+    total += expense.amount;
   });
-  return Math.round(total * 100)/100;
+  return Math.round(total * 100) / 100;
 }
 
 export function groupExpensesByDate(expenses: UiExpense[]) {
   interface ExpensesByMonthAndYear {
-    [key: string]: UiExpense[]
+    [key: string]: UiExpense[];
   }
 
   const mapMonthToName = new Map<string, string>([
@@ -43,9 +43,11 @@ export function groupExpensesByDate(expenses: UiExpense[]) {
   */
   const groupByMonthIndexAndYear = expenses.reduce((acc, elem: UiExpense) => {
     const dateOnly = new Date(elem.date).toISOString().substring(0, 10);
-    const [ year, month ] = dateOnly.split('-');
+    const [year, month] = dateOnly.split('-');
     const monthAndYear = `${month}-${year}`;
-    acc[monthAndYear] ? acc[monthAndYear].push(elem): (acc[monthAndYear] = [ elem ]);
+    acc[monthAndYear]
+      ? acc[monthAndYear].push(elem)
+      : (acc[monthAndYear] = [elem]);
     return acc;
   }, {} as ExpensesByMonthAndYear);
 
@@ -65,13 +67,15 @@ export function groupExpensesByDate(expenses: UiExpense[]) {
     ]
   */
 
-  const groupByMonthNameAndYear: ExpensesByMonth[] = Object.keys(groupByMonthIndexAndYear).map((key) => {
-    const [ monthIndex, year ] = key.split('-');
+  const groupByMonthNameAndYear: ExpensesByMonth[] = Object.keys(
+    groupByMonthIndexAndYear
+  ).map((key) => {
+    const [monthIndex, year] = key.split('-');
     return {
       month: mapMonthToName.get(monthIndex) as string,
       year,
       expenses: groupByMonthIndexAndYear[key],
-    }
+    };
   });
   return groupByMonthNameAndYear;
 }

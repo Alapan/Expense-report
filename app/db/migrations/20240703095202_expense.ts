@@ -10,18 +10,19 @@ export async function up(knex: Knex): Promise<void> {
       table.dateTime('date');
       table.float('amount').unsigned().notNullable();
       table.string('place');
-      table.enum('currency', currencies.map((currency) => currency.value)).notNullable();
+      table
+        .enum(
+          'currency',
+          currencies.map((currency) => currency.value)
+        )
+        .notNullable();
       table.timestamps(true, true);
-      table.integer('user_id')
-        .references('id')
-        .inTable('useraccount')
-      table.integer('category_id')
-        .references('id')
-        .inTable('category')
+      table.integer('user_id').references('id').inTable('useraccount');
+      table.integer('category_id').references('id').inTable('category');
     });
-  })
-};
+  });
+}
 
 export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTableIfExists('expense');
-};
+}
