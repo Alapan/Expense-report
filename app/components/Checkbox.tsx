@@ -6,11 +6,11 @@ import { DateFilterContext } from './DateFilterView';
 interface CheckboxProps {
   label: string;
   type: 'months' | 'years';
-};
+}
 
 const Checkbox = ({ label, type }: CheckboxProps) => {
   const { updateSelection, dateFilter } = useContext(DateFilterContext) as any;
-  const [ checked, setChecked ] = useState(dateFilter[type][label]);
+  const [checked, setChecked] = useState(dateFilter[type][label]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (): void => {
     setChecked(!checked);
@@ -19,12 +19,8 @@ const Checkbox = ({ label, type }: CheckboxProps) => {
 
   return (
     <label>
-      <input
-        type='checkbox'
-        checked={checked}
-        onChange={handleChange}
-      />
-      <span className='px-2'>{label}</span>
+      <input type="checkbox" checked={checked} onChange={handleChange} />
+      <span className="px-2">{label}</span>
     </label>
   );
 };

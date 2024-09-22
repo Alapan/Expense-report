@@ -13,7 +13,7 @@ interface ExpenseTableProps {
 
 const ExpenseTable = ({ expensesToDisplay }: ExpenseTableProps) => {
   const { isVisible, showToast } = useToast();
-  const [ deleteResult, setDeletionResult ] = useState(0);
+  const [deleteResult, setDeletionResult] = useState(0);
 
   const handleDelete = async (expenseId: number) => {
     const deletedExpenseId = await deleteExpense(expenseId);
@@ -28,7 +28,7 @@ const ExpenseTable = ({ expensesToDisplay }: ExpenseTableProps) => {
   return (
     <>
       {expensesToDisplay.map(({ month, year, expenses, total }, i) => (
-        <div key={`${month} ${year}`} className="mx-5 my-10">
+        <div key={`${month} ${year}`} className="mx-5 my-5 xl:my-0.5">
           <h2 className="text-3xl mb-10 font-medium">
             {month} {year}
           </h2>

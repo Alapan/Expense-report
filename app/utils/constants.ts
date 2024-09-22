@@ -15,9 +15,9 @@ export const Months = [
 
 export interface DateFilterState {
   months: {
-    [month in typeof Months[number]]: boolean
-  },
+    [month in (typeof Months)[number]]: boolean;
+  };
   years: {
-    [year: string]: boolean
-  },
-};
+    [year: string]: boolean;
+  };
+}

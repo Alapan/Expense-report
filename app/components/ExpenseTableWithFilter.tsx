@@ -1,39 +1,63 @@
 'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { ExpensesByMonth } from "@/types";
-import DateFilter from "./DateFilterView";
-import ExpenseTable from "./ExpenseTable";
-import { DateFilterState } from "@/utils/constants";
+import { ExpensesByMonth } from '@/types';
+import DateFilter from './DateFilterView';
+import ExpenseTable from './ExpenseTable';
+import { DateFilterState } from '@/utils/constants';
 
 interface ExpenseTableWithFilterProps {
-  expensesByMonths: ExpensesByMonth[]
-};
+  expensesByMonths: ExpensesByMonth[];
+}
 
-const ExpenseTableWithFilter = ({ expensesByMonths }: ExpenseTableWithFilterProps) => {
-  const [ expensesToDisplay, setExpensesToDisplay ] = useState(expensesByMonths);
+const ExpenseTableWithFilter = ({
+  expensesByMonths,
+}: ExpenseTableWithFilterProps) => {
+  const [expensesToDisplay, setExpensesToDisplay] = useState(expensesByMonths);
 
   const updateExpensesToDisplay = (dateFilter: DateFilterState) => {
-    const monthsToShow = Object.values(dateFilter.months).filter(month => month);
-    const yearsToShow = Object.values(dateFilter.years).filter(year => year);
-    console.log('MONTHS: ', monthsToShow)
-    console.log('YEARS: ', yearsToShow)
+    const selectedMonths = Object.keys(dateFilter.months).filter(
+      (month) => dateFilter.months[month]
+    );
+
+    const selectedYears = Object.keys(dateFilter.years).filter(
+      (year) => dateFilter.years[year]
+    );
+
+    let monthsToShow = selectedMonths.length
+      ? selectedMonths
+      : expensesByMonths.map(({ month }) => month);
+    let yearsToShow = selectedYears.length
+      ? selectedYears
+      : expensesByMonths.map(({ year }) => year);
+
+    monthsToShow = [...new Set(monthsToShow)];
+    yearsToShow = [...new Set(yearsToShow)];
+
+    // First filter out months not selected, then years
+    const filteredExpenses: ExpensesByMonth[] = expensesByMonths
+      .filter((expense) => monthsToShow.includes(expense.month))
+      .filter((expense) => yearsToShow.includes(expense.year));
+
+    setExpensesToDisplay(filteredExpenses);
   };
 
   return (
     <>
-      <div className='mx-5 mt-20'>
+      <div className="mx-5 mt-20 xl:mt-40">
         <DateFilter
           expensesByMonths={expensesByMonths}
-          updateExpensesToDisplay={(filter: DateFilterState) => updateExpensesToDisplay(filter)}
+          updateExpensesToDisplay={(filter: DateFilterState) =>
+            updateExpensesToDisplay(filter)
+          }
         />
       </div>
-      <div className="pt-12 xl:pt-28">
+      <div className="pt-12 xl:pt-20">
         <ExpenseTable expensesToDisplay={expensesToDisplay} />
       </div>
     </>
-  ); 
+  );
 };
 
 export default ExpenseTableWithFilter;

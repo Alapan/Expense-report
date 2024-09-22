@@ -10,18 +10,24 @@ import { DateFilterState } from '@/utils/constants';
 interface DateFilterViewProps {
   expensesByMonths: ExpensesByMonth[];
   updateExpensesToDisplay: (filter: DateFilterState) => void;
-};
+}
 
 export const DateFilterContext = createContext({});
 
-const DateFilterView = ({ expensesByMonths, updateExpensesToDisplay }: DateFilterViewProps) => {
-  const monthsToList = expensesByMonths.map((expensesByMonth) => expensesByMonth.month);
-  const yearsToList = expensesByMonths.map(
-    (expensesByMonth) => expensesByMonth.year
-  ).filter((value, index, self) => self.indexOf(value) === index);
+const DateFilterView = ({
+  expensesByMonths,
+  updateExpensesToDisplay,
+}: DateFilterViewProps) => {
+  const monthsToList = expensesByMonths.map(
+    (expensesByMonth) => expensesByMonth.month
+  );
+  const yearsToList = expensesByMonths
+    .map((expensesByMonth) => expensesByMonth.year)
+    .filter((value, index, self) => self.indexOf(value) === index);
 
   const onSubmitFilter = () => {
     updateExpensesToDisplay(dateFilter);
+    setDisabled(true);
   };
 
   const initialFilter: DateFilterState = {
@@ -37,17 +43,20 @@ const DateFilterView = ({ expensesByMonths, updateExpensesToDisplay }: DateFilte
     initialFilter.years[year] = false;
   }
 
-  const [ dateFilter, setDateFilter ] = useState(initialFilter);
-  const [ disabled, setDisabled ] = useState(true);
+  const [dateFilter, setDateFilter] = useState(initialFilter);
+  const [disabled, setDisabled] = useState(true);
 
-  const updateSelection = (type: 'months' | 'years', label: string, value: boolean) => {
+  const updateSelection = (
+    type: 'months' | 'years',
+    label: string,
+    value: boolean
+  ) => {
     dateFilter[type][label] = value;
     setDateFilter(dateFilter);
-    const isMonthFilterSet = Object.values(dateFilter.months).some(x => x);
-    const isYearFilterSet = Object.values(dateFilter.years).some(x => x);
+    const isMonthFilterSet = Object.values(dateFilter.months).some((x) => x);
+    const isYearFilterSet = Object.values(dateFilter.years).some((x) => x);
     const isDateFilterSet = isMonthFilterSet || isYearFilterSet;
-    if (isDateFilterSet) setDisabled(false);
-    else setDisabled(true);
+    setDisabled(false);
   };
 
   const contextValue = { dateFilter, updateSelection };
@@ -60,21 +69,17 @@ const DateFilterView = ({ expensesByMonths, updateExpensesToDisplay }: DateFilte
   return (
     <form action={onSubmitFilter}>
       <DateFilterContext.Provider value={contextValue}>
-        <div className='grid grid-rows-1 grid-cols-5 date-filter-grid-columns border border-solid border-slate-400 rounded-md px-5 py-5'>
-          <div className='col-start-1 col-span-1 text-center'>
+        <div className="grid grid-rows-1 grid-cols-5 date-filter-grid-columns border border-solid border-slate-400 rounded-md px-5 py-5">
+          <div className="col-start-1 col-span-1 text-center">
             <MonthFilter monthsToList={monthsToList} />
           </div>
-          <div className='col-start-2 col-span-1 h-8 w-0.5 bg-slate-400' />
-          <div className='col-start-3 col-span-1 text-center'>
+          <div className="col-start-2 col-span-1 h-8 w-0.5 bg-slate-400" />
+          <div className="col-start-3 col-span-1 text-center">
             <YearFilter yearsToList={yearsToList} />
           </div>
-          <div className='col-start-4 col-span-1 h-8 w-0.5 bg-slate-400' />
-          <div className='col-start-5 col-span-1 ps-0.5'>
-            <button
-              type='submit'
-              className={btnClass}
-              disabled={disabled}
-            >
+          <div className="col-start-4 col-span-1 h-8 w-0.5 bg-slate-400" />
+          <div className="col-start-5 col-span-1 text-center">
+            <button type="submit" className={btnClass} disabled={disabled}>
               {'APPLY FILTER'}
             </button>
           </div>
