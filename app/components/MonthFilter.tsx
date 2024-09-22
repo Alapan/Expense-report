@@ -16,19 +16,26 @@ const MonthFilter = ({ monthsToList }: MonthFilterProps) => {
 
   return (
     <div
-      className='row-start-1 col-start-1 col-span-1 cursor-pointer'
+      className='row-start-1 col-start-1 col-span-1 cursor-pointer w-32'
       ref={containerRef}
       onClick={handleClick}
     >
       {'Month'}
+      <span className='arrow-down'/>
       {
         showDropdown && (
-          <ul>
-            {monthsToList.map((month) => (
-              <li key={month}>
-                <Checkbox label={month}/>
-              </li>
-            ))}
+          <ul className='absolute border px-2 shadow-2xl bg-slate-50 w-32 rounded-md'>
+            {monthsToList.map((month, i) => {
+              let classname = 'pt-2';
+              if (i === monthsToList.length - 1) {
+                classname += ' pb-2';
+              }
+              return (
+                <li key={month} className={classname}>
+                  <Checkbox label={month} type='months'/>
+                </li>
+              )
+            })}
           </ul>
         )
       }

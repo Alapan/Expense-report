@@ -8,6 +8,7 @@ import {
   sortExpensesByDate,
 } from './helpers';
 import { DbExpense, UiExpense } from '@/types';
+import { Months } from '@/utils/constants';
 
 export async function createExpense(formData: FormData) {
   const session = await getSession();
@@ -92,30 +93,16 @@ export async function getExpenses() {
       return { ...expenses, total };
     });
 
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
     const sortedExpensesByMonth = expensesEachMonthWithTotal.sort(
       (exp1, exp2) => {
         const date2 = new Date(
           parseInt(exp2.year),
-          months.indexOf(exp2.month),
+          Months.indexOf(exp2.month),
           1
         );
         const date1 = new Date(
           parseInt(exp1.year),
-          months.indexOf(exp1.month),
+          Months.indexOf(exp1.month),
           1
         );
         return date2.getTime() - date1.getTime();

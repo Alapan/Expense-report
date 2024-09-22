@@ -1,19 +1,22 @@
 'use client';
 
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, useContext, useState } from 'react';
+import { DateFilterContext } from './DateFilterView';
 
 interface CheckboxProps {
   label: string;
+  type: 'months' | 'years';
 };
 
-const Checkbox = ({ label }: CheckboxProps) => {
-  const [ checked, setChecked ] = useState(false);
+const Checkbox = ({ label, type }: CheckboxProps) => {
+  const { updateSelection, dateFilter } = useContext(DateFilterContext) as any;
+  const [ checked, setChecked ] = useState(dateFilter[type][label]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (): void => {
-    console.log('HANDLE CHANGE')
     setChecked(!checked);
+    updateSelection(type, label, !checked);
   };
-  
+
   return (
     <label>
       <input
@@ -21,7 +24,7 @@ const Checkbox = ({ label }: CheckboxProps) => {
         checked={checked}
         onChange={handleChange}
       />
-      {label}
+      <span className='px-2'>{label}</span>
     </label>
   );
 };
