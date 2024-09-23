@@ -12,7 +12,7 @@ const MonthFilter = ({ monthsToList }: MonthFilterProps) => {
     useOnClickOutsideDropdown();
 
   return (
-    <div className="cursor-pointer relative" ref={containerRef} onClick={handleClick}>
+    <div className="cursor-pointer relative" data-testid='month-dropdown' ref={containerRef} onClick={handleClick}>
       {'Month'}
       <span className="arrow-down" />
       {showDropdown && (

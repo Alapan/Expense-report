@@ -12,7 +12,7 @@ const YearFilter = ({ yearsToList }: YearFilterProps) => {
     useOnClickOutsideDropdown();
 
   return (
-    <div className="cursor-pointer relative" ref={containerRef} onClick={handleClick}>
+    <div className="cursor-pointer relative" data-testid='year-dropdown' ref={containerRef} onClick={handleClick}>
       {'Year'}
       <span className="arrow-down" />
       {showDropdown && (

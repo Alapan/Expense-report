@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { createContext, FormEvent, useState } from 'react';
 
 import { ExpensesByMonth } from '@/types';
 import MonthFilter from './MonthFilter';
@@ -25,7 +25,8 @@ const DateFilterView = ({
     .map((expensesByMonth) => expensesByMonth.year)
     .filter((value, index, self) => self.indexOf(value) === index);
 
-  const onSubmitFilter = () => {
+  const onSubmitFilter = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     updateExpensesToDisplay(dateFilter);
     setDisabled(true);
   };
@@ -64,7 +65,7 @@ const DateFilterView = ({
   else btnClass += ' bg-cyan-200';
 
   return (
-    <form action={onSubmitFilter}>
+    <form onSubmit={onSubmitFilter}>
       <DateFilterContext.Provider value={contextValue}>
         <div className="grid grid-rows-1 grid-cols-5 date-filter-grid-columns border border-solid border-slate-400 rounded-md py-5">
           <div className="col-start-1 col-span-1 text-center">
