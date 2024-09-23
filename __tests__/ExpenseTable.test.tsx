@@ -70,7 +70,7 @@ describe('ExpenseTable component', () => {
   ];
 
   beforeEach(() => {
-    render(<ExpenseTable expensesByMonths={expensesByMonths} />);
+    render(<ExpenseTable expensesToDisplay={expensesByMonths} />);
   });
 
   it('Renders the month names', () => {

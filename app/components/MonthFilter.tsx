@@ -12,11 +12,7 @@ const MonthFilter = ({ monthsToList }: MonthFilterProps) => {
     useOnClickOutsideDropdown();
 
   return (
-    <div
-      className="cursor-pointer"
-      ref={containerRef}
-      onClick={handleClick}
-    >
+    <div className="cursor-pointer" ref={containerRef} onClick={handleClick}>
       {'Month'}
       <span className="arrow-down" />
       {showDropdown && (
