@@ -91,9 +91,18 @@ describe('ExpenseTableWithFilter', () => {
   });
 
   it('renders all months by default', () => {
-    const septemberHeading = screen.getByRole('heading', { level: 2, name: 'September 2024' });
-    const augustHeading = screen.getByRole('heading', { level: 2, name: 'August 2024' });
-    const decemberHeading = screen.getByRole('heading', { level: 2, name: 'December 2023' });
+    const septemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'September 2024',
+    });
+    const augustHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'August 2024',
+    });
+    const decemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'December 2023',
+    });
 
     expect(septemberHeading).toBeInTheDocument();
     expect(augustHeading).toBeInTheDocument();
@@ -103,8 +112,13 @@ describe('ExpenseTableWithFilter', () => {
   it('renders the expenses of only the selected months', async () => {
     await userEvent.click(screen.getByTestId('month-dropdown'));
     await userEvent.click(screen.getByLabelText('September'));
-    await userEvent.click(screen.getByText('APPLY FILTER', { selector: 'button'}));
-    const septemberHeading = screen.getByRole('heading', { level: 2, name: 'September 2024' });
+    await userEvent.click(
+      screen.getByText('APPLY FILTER', { selector: 'button' })
+    );
+    const septemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'September 2024',
+    });
     const augustHeading = screen.queryByText('August 2024');
     await expect(septemberHeading).toBeInTheDocument();
     await expect(augustHeading).toBeNull();
@@ -113,7 +127,9 @@ describe('ExpenseTableWithFilter', () => {
   it('renders the expenses of only the selected year', async () => {
     await userEvent.click(screen.getByTestId('year-dropdown'));
     await userEvent.click(screen.getByLabelText('2023'));
-    await userEvent.click(screen.getByText('APPLY FILTER', { selector: 'button'}));
+    await userEvent.click(
+      screen.getByText('APPLY FILTER', { selector: 'button' })
+    );
     const septemberHeading = screen.queryByText('September 2024');
     const augustHeading = screen.queryByText('August 2024');
     const decemberHeading = screen.queryByText('December 2023');

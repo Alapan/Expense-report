@@ -18,7 +18,7 @@ const Checkbox = ({ label, type }: CheckboxProps) => {
   };
 
   return (
-    <label className='flex flex-row justify-start mx-2'>
+    <label className="flex flex-row justify-start mx-2">
       <input type="checkbox" checked={checked} onChange={handleChange} />
       <span className="px-2">{label}</span>
     </label>
