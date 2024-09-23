@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .date-filter-grid-columns {
-  grid-template-columns: 1fr 0.1fr 1fr 0.1fr 1fr;
+  grid-template-columns: 1fr 0.1fr 1fr 0.005fr 1fr;
 }
 
 @layer base {

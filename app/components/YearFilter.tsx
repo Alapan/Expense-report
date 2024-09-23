@@ -12,11 +12,11 @@ const YearFilter = ({ yearsToList }: YearFilterProps) => {
     useOnClickOutsideDropdown();
 
   return (
-    <div className="cursor-pointer" ref={containerRef} onClick={handleClick}>
+    <div className="cursor-pointer relative" ref={containerRef} onClick={handleClick}>
       {'Year'}
       <span className="arrow-down" />
       {showDropdown && (
-        <ul className="absolute border mx-2 shadow-2xl bg-slate-50 w-32 rounded-md">
+        <ul className="absolute m-auto inset-x-0 border shadow-2xl bg-slate-50 w-32 rounded-md">
           {yearsToList.map((year, i) => {
             let className = 'pt-2';
             if (i === yearsToList.length - 1) {

@@ -53,9 +53,6 @@ const DateFilterView = ({
   ) => {
     dateFilter[type][label] = value;
     setDateFilter(dateFilter);
-    const isMonthFilterSet = Object.values(dateFilter.months).some((x) => x);
-    const isYearFilterSet = Object.values(dateFilter.years).some((x) => x);
-    const isDateFilterSet = isMonthFilterSet || isYearFilterSet;
     setDisabled(false);
   };
 
@@ -69,7 +66,7 @@ const DateFilterView = ({
   return (
     <form action={onSubmitFilter}>
       <DateFilterContext.Provider value={contextValue}>
-        <div className="grid grid-rows-1 grid-cols-5 date-filter-grid-columns border border-solid border-slate-400 rounded-md px-5 py-5">
+        <div className="grid grid-rows-1 grid-cols-5 date-filter-grid-columns border border-solid border-slate-400 rounded-md py-5">
           <div className="col-start-1 col-span-1 text-center">
             <MonthFilter monthsToList={monthsToList} />
           </div>
@@ -78,7 +75,7 @@ const DateFilterView = ({
             <YearFilter yearsToList={yearsToList} />
           </div>
           <div className="col-start-4 col-span-1 h-8 w-0.5 bg-slate-400" />
-          <div className="col-start-5 col-span-1 text-center">
+          <div className="col-start-5 col-span-1 text-left text-center">
             <button type="submit" className={btnClass} disabled={disabled}>
               {'APPLY FILTER'}
             </button>

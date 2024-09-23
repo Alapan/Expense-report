@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { ExpensesByMonth } from '@/types';
-import DateFilter from './DateFilterView';
+import DateFilterView from './DateFilterView';
 import ExpenseTable from './ExpenseTable';
 import { DateFilterState } from '@/utils/constants';
 
@@ -46,7 +46,7 @@ const ExpenseTableWithFilter = ({
   return (
     <>
       <div className="mx-5 mt-20 xl:mt-40">
-        <DateFilter
+        <DateFilterView
           expensesByMonths={expensesByMonths}
           updateExpensesToDisplay={(filter: DateFilterState) =>
             updateExpensesToDisplay(filter)

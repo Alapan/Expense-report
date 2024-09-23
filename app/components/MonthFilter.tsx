@@ -12,11 +12,11 @@ const MonthFilter = ({ monthsToList }: MonthFilterProps) => {
     useOnClickOutsideDropdown();
 
   return (
-    <div className="cursor-pointer" ref={containerRef} onClick={handleClick}>
+    <div className="cursor-pointer relative" ref={containerRef} onClick={handleClick}>
       {'Month'}
       <span className="arrow-down" />
       {showDropdown && (
-        <ul className="absolute border mx-2 shadow-2xl bg-slate-50 w-32 rounded-md">
+        <ul className="absolute m-auto inset-x-0 border shadow-2xl bg-slate-50 w-32 rounded-md">
           {monthsToList.map((month, i) => {
             let classname = 'pt-2';
             if (i === monthsToList.length - 1) {
