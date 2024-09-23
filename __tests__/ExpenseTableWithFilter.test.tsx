@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import ExpenseTable from '@/components/ExpenseTable';
 import { ExpensesByMonth } from '@/types';
+import ExpenseTableWithFilter from '../app/components/ExpenseTableWithFilter';
 
-jest.mock('../app/components/ExpenseRow', () => jest.fn(() => null));
+jest.mock('../app/components/ConfirmationModal', () => jest.fn(() => null));
 
-describe('ExpenseTable component', () => {
+describe('ExpenseTableWithFilter', () => {
   const expensesByMonths: ExpensesByMonth[] = [
     {
       month: 'September',
@@ -67,13 +68,29 @@ describe('ExpenseTable component', () => {
       ],
       total: 54.24,
     },
+    {
+      month: 'December',
+      year: '2023',
+      expenses: [
+        {
+          id: 1,
+          date: new Date('2024-08-15T00:00:00.000Z'),
+          amount: 10.81,
+          place: 'Movie',
+          currency: '€',
+          created_at: new Date('2024-09-19T08:33:46.279Z'),
+          categoryName: 'Culture and entertainment',
+        },
+      ],
+      total: 10.81,
+    },
   ];
 
   beforeEach(() => {
-    render(<ExpenseTable expensesToDisplay={expensesByMonths} />);
+    render(<ExpenseTableWithFilter expensesByMonths={expensesByMonths} />);
   });
 
-  it('Renders the month names', () => {
+  it('renders all months by default', () => {
     const septemberHeading = screen.getByRole('heading', {
       level: 2,
       name: 'September 2024',
@@ -82,19 +99,42 @@ describe('ExpenseTable component', () => {
       level: 2,
       name: 'August 2024',
     });
+    const decemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'December 2023',
+    });
+
     expect(septemberHeading).toBeInTheDocument();
     expect(augustHeading).toBeInTheDocument();
+    expect(decemberHeading).toBeInTheDocument();
   });
 
-  it('Renders the word "Total" twice', () => {
-    const totalHeading = screen.getAllByText('Total');
-    expect(totalHeading).toHaveLength(2);
+  it('renders the expenses of only the selected months', async () => {
+    await userEvent.click(screen.getByTestId('month-dropdown'));
+    await userEvent.click(screen.getByLabelText('September'));
+    await userEvent.click(
+      screen.getByText('APPLY FILTER', { selector: 'button' })
+    );
+    const septemberHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'September 2024',
+    });
+    const augustHeading = screen.queryByText('August 2024');
+    await expect(septemberHeading).toBeInTheDocument();
+    await expect(augustHeading).toBeNull();
   });
 
-  it('Renders the total expense for the month in the right format', () => {
-    const septemberTotal = screen.getByText('144.64 €');
-    const augustTotal = screen.getByText('54.24 €');
-    expect(septemberTotal).toBeInTheDocument();
-    expect(augustTotal).toBeInTheDocument();
+  it('renders the expenses of only the selected year', async () => {
+    await userEvent.click(screen.getByTestId('year-dropdown'));
+    await userEvent.click(screen.getByLabelText('2023'));
+    await userEvent.click(
+      screen.getByText('APPLY FILTER', { selector: 'button' })
+    );
+    const septemberHeading = screen.queryByText('September 2024');
+    const augustHeading = screen.queryByText('August 2024');
+    const decemberHeading = screen.queryByText('December 2023');
+    await expect(septemberHeading).toBeNull();
+    await expect(augustHeading).toBeNull();
+    await expect(decemberHeading).toBeInTheDocument();
   });
 });

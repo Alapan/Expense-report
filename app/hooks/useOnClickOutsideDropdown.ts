@@ -5,7 +5,7 @@ const useOnClickOutsideDropdown = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (): void => {
-    setShowDropdown(!showDropdown);
+    setShowDropdown(true);
   };
 
   useEffect(() => {

@@ -2,12 +2,12 @@ import { NextPage } from 'next';
 import LinkButton from '@/components/LinkButton';
 import LargeScreenExpenseForm from '@/components/LargeScreenExpenseForm';
 import { getExpenses } from '@/db/serverActions';
-import ExpenseTable from '@/components/ExpenseTable';
+import ExpenseTableWithFilter from '@/components/ExpenseTableWithFilter';
 
 const Page: NextPage = async () => {
   const expensesByMonths = await getExpenses();
   return (
-    <div>
+    <>
       <div className="hidden xl:block xl:pt-14">
         <LargeScreenExpenseForm />
       </div>
@@ -23,10 +23,8 @@ const Page: NextPage = async () => {
           </div>
         </div>
       </div>
-      <div className="pt-12 xl:pt-28">
-        <ExpenseTable expensesByMonths={expensesByMonths} />
-      </div>
-    </div>
+      <ExpenseTableWithFilter expensesByMonths={expensesByMonths} />
+    </>
   );
 };
 

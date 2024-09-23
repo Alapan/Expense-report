@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.date-filter-grid-columns {
+  grid-template-columns: 1fr 0.1fr 1fr 0.005fr 1fr;
+}
+
 @layer base {
   @font-face {
     font-family: 'Roboto-Light';
@@ -10,5 +14,14 @@
   @font-face {
     font-family: 'Roboto-Medium';
     src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+  }
+}
+
+@layer components {
+  .arrow-down {
+    border-top: 6px solid black;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    @apply inline-block w-0 h-0 ms-2.5 mb-0.5;
   }
 }

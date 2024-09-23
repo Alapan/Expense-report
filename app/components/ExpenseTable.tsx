@@ -8,10 +8,10 @@ import { deleteExpense } from '@/db/serverActions';
 import Toast from './Toast';
 
 interface ExpenseTableProps {
-  expensesByMonths: ExpensesByMonth[];
+  expensesToDisplay: ExpensesByMonth[];
 }
 
-const ExpenseTable = ({ expensesByMonths }: ExpenseTableProps) => {
+const ExpenseTable = ({ expensesToDisplay }: ExpenseTableProps) => {
   const { isVisible, showToast } = useToast();
   const [deleteResult, setDeletionResult] = useState(0);
 
@@ -27,8 +27,8 @@ const ExpenseTable = ({ expensesByMonths }: ExpenseTableProps) => {
 
   return (
     <>
-      {expensesByMonths.map(({ month, year, expenses, total }, i) => (
-        <div key={`${month} ${year}`} className="mx-5 my-10">
+      {expensesToDisplay.map(({ month, year, expenses, total }, i) => (
+        <div key={`${month} ${year}`} className="mx-5 my-5 xl:my-0.5">
           <h2 className="text-3xl mb-10 font-medium">
             {month} {year}
           </h2>
