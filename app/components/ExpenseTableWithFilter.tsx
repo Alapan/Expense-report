@@ -72,7 +72,6 @@ const ExpenseTableWithFilter = ({
       .filter((expense) => monthsToShow.includes(expense.month))
       .filter((expense) => yearsToShow.includes(expense.year));
 
-    console.log('EXPENSES: ', filteredExpenses);
     filteredExpenses.forEach((expensesByMonth) => {
       expensesByMonth.expenses.sort(
         (exp1, exp2) =>
