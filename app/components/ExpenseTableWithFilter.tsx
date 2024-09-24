@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ExpensesByMonth } from '@/types';
 import DateFilterView from './DateFilterView';
@@ -16,7 +16,39 @@ const ExpenseTableWithFilter = ({
 }: ExpenseTableWithFilterProps) => {
   const [expensesToDisplay, setExpensesToDisplay] = useState(expensesByMonths);
 
-  const updateExpensesToDisplay = (dateFilter: DateFilterState) => {
+  const initialFilter: DateFilterState = {
+    months: {},
+    years: {},
+  };
+
+  const monthsToList = expensesByMonths.map(
+    (expensesByMonth) => expensesByMonth.month
+  );
+  const yearsToList = expensesByMonths
+    .map((expensesByMonth) => expensesByMonth.year)
+    .filter((value, index, self) => self.indexOf(value) === index);
+
+  for (const month of monthsToList) {
+    initialFilter.months[month] = false;
+  }
+
+  for (const year of yearsToList) {
+    initialFilter.years[year] = false;
+  }
+
+  const [dateFilter, setDateFilter] = useState(initialFilter);
+
+  useEffect(() => {
+    updateExpensesToDisplay();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expensesByMonths]);
+
+  const updateDateFilterState = (dateFilter: DateFilterState) => {
+    setDateFilter(dateFilter);
+    updateExpensesToDisplay();
+  };
+
+  const updateExpensesToDisplay = () => {
     const selectedMonths = Object.keys(dateFilter.months).filter(
       (month) => dateFilter.months[month]
     );
@@ -40,6 +72,12 @@ const ExpenseTableWithFilter = ({
       .filter((expense) => monthsToShow.includes(expense.month))
       .filter((expense) => yearsToShow.includes(expense.year));
 
+    filteredExpenses.forEach((expensesByMonth) => {
+      expensesByMonth.expenses.sort(
+        (exp1, exp2) =>
+          new Date(exp2.date).valueOf() - new Date(exp1.date).valueOf()
+      );
+    });
     setExpensesToDisplay(filteredExpenses);
   };
 
@@ -48,8 +86,9 @@ const ExpenseTableWithFilter = ({
       <div className="mx-5 mt-20 xl:mt-40">
         <DateFilterView
           expensesByMonths={expensesByMonths}
+          dateFilter={dateFilter}
           updateExpensesToDisplay={(filter: DateFilterState) =>
-            updateExpensesToDisplay(filter)
+            updateDateFilterState(filter)
           }
         />
       </div>

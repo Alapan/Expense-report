@@ -10,6 +10,7 @@ import { DateFilterState } from '@/utils/constants';
 interface DateFilterViewProps {
   expensesByMonths: ExpensesByMonth[];
   updateExpensesToDisplay: (filter: DateFilterState) => void;
+  dateFilter: DateFilterState;
 }
 
 export const DateFilterContext = createContext({});
@@ -17,6 +18,7 @@ export const DateFilterContext = createContext({});
 const DateFilterView = ({
   expensesByMonths,
   updateExpensesToDisplay,
+  dateFilter,
 }: DateFilterViewProps) => {
   const monthsToList = expensesByMonths.map(
     (expensesByMonth) => expensesByMonth.month
@@ -31,20 +33,6 @@ const DateFilterView = ({
     setDisabled(true);
   };
 
-  const initialFilter: DateFilterState = {
-    months: {},
-    years: {},
-  };
-
-  for (const month of monthsToList) {
-    initialFilter.months[month] = false;
-  }
-
-  for (const year of yearsToList) {
-    initialFilter.years[year] = false;
-  }
-
-  const [dateFilter, setDateFilter] = useState(initialFilter);
   const [disabled, setDisabled] = useState(true);
 
   const updateSelection = (
@@ -53,7 +41,6 @@ const DateFilterView = ({
     value: boolean
   ) => {
     dateFilter[type][label] = value;
-    setDateFilter(dateFilter);
     setDisabled(false);
   };
 
