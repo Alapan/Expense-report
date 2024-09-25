@@ -2,15 +2,24 @@
 
 import { createContext, FormEvent, useState } from 'react';
 
-import { ExpensesByMonth } from '@/types';
+import { DateFilterType, ExpensesByMonth } from '@/types';
 import MonthFilter from './MonthFilter';
 import YearFilter from './YearFilter';
 import { DateFilterState } from '@/utils/constants';
 
 interface DateFilterViewProps {
   expensesByMonths: ExpensesByMonth[];
-  updateExpensesToDisplay: (filter: DateFilterState) => void;
+  updateExpensesToDisplay: () => void;
   dateFilter: DateFilterState;
+  updateDateFilter: ({
+    type,
+    label,
+    value,
+  }: {
+    type: DateFilterType;
+    label: string;
+    value: boolean;
+  }) => void;
 }
 
 export const DateFilterContext = createContext({});
@@ -19,6 +28,7 @@ const DateFilterView = ({
   expensesByMonths,
   updateExpensesToDisplay,
   dateFilter,
+  updateDateFilter,
 }: DateFilterViewProps) => {
   const monthsToList = expensesByMonths.map(
     (expensesByMonth) => expensesByMonth.month
@@ -29,18 +39,18 @@ const DateFilterView = ({
 
   const onSubmitFilter = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    updateExpensesToDisplay(dateFilter);
+    updateExpensesToDisplay();
     setDisabled(true);
   };
 
   const [disabled, setDisabled] = useState(true);
 
   const updateSelection = (
-    type: 'months' | 'years',
+    type: DateFilterType,
     label: string,
     value: boolean
   ) => {
-    dateFilter[type][label] = value;
+    updateDateFilter({ type, label, value });
     setDisabled(false);
   };
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { ExpensesByMonth } from '@/types';
+import { DateFilterType, ExpensesByMonth } from '@/types';
 import DateFilterView from './DateFilterView';
 import ExpenseTable from './ExpenseTable';
 import { DateFilterState } from '@/utils/constants';
@@ -43,9 +43,18 @@ const ExpenseTableWithFilter = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expensesByMonths]);
 
-  const updateDateFilterState = (dateFilter: DateFilterState) => {
-    setDateFilter(dateFilter);
-    updateExpensesToDisplay();
+  const updateDateFilter = ({
+    type,
+    label,
+    value,
+  }: {
+    type: DateFilterType;
+    label: string;
+    value: boolean;
+  }) => {
+    const filter = { ...dateFilter };
+    dateFilter[type][label] = value;
+    setDateFilter(filter);
   };
 
   const updateExpensesToDisplay = () => {
@@ -87,9 +96,8 @@ const ExpenseTableWithFilter = ({
         <DateFilterView
           expensesByMonths={expensesByMonths}
           dateFilter={dateFilter}
-          updateExpensesToDisplay={(filter: DateFilterState) =>
-            updateDateFilterState(filter)
-          }
+          updateExpensesToDisplay={updateExpensesToDisplay}
+          updateDateFilter={updateDateFilter}
         />
       </div>
       <div className="pt-12 xl:pt-20">

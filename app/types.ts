@@ -125,3 +125,5 @@ export const categories: Category[] = [
     type: CategoryType.WANT,
   },
 ];
+
+export type DateFilterType = 'months' | 'years';
